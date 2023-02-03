@@ -1,17 +1,18 @@
-import Seo from '@/components/Seo';
+import Seo from '../../components/Seo';
+import { useRouter } from 'next/router';
 
 export default function Detail({ params }) {
+  const router = useRouter();
   const [title, id] = params || [];
-
   return (
     <div>
       <Seo title={title} />
-      <h1>{title}</h1>
+      <h4>{title}</h4>
     </div>
   );
 }
 
-export async function getServerSideProps({ params: { params } }) {
+export function getServerSideProps({ params: { params } }) {
   return {
     props: {
       params,
