@@ -77,7 +77,7 @@ const Upcoming = ({ datas: { results } }: Movies) => {
 
 export const getServerSideProps = async () => {
   const data = await (
-    await axios.get(`https://movie-trailers-tau.vercel.app/api/upcoming`)
+    await axios.get(`http://localhost:3000/api/upcoming`)
   ).data;
   return {
     props: {
