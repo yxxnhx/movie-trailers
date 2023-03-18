@@ -36,7 +36,9 @@ export async function getServerSideProps(context: {
 }): Promise<{ props: Props }> {
   const params = context.query.query as string;
   const { results }: { results: Movie[] } = await axios
-    .get(`http://localhost:3000/api/search?query=${params}&language=ko-KR`)
+    .get(
+      `https://movie-trailers-tau.vercel.app/api/search?query=${params}&language=ko-KR`,
+    )
     .then((res) => res.data);
 
   results.map(

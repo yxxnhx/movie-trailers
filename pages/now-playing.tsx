@@ -37,7 +37,7 @@ const Now = ({ results }: { results?: Movie[] }) => {
 
 export const getServerSideProps = async () => {
   const { results }: { results: Movie[] } = await axios
-    .get(`http://localhost:3000/api/playing`)
+    .get(`https://movie-trailers-tau.vercel.app/api/playing`)
     .then((res) => res.data);
 
   results.map(
