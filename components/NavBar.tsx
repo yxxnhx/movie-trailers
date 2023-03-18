@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import SearchBox from "./SearchBox";
 
 export default function NavBar() {
   const router = useRouter();
@@ -8,6 +9,9 @@ export default function NavBar() {
       <Link href="/" legacyBehavior>
         <img src="/movie-icon.png" alt="logo" />
       </Link>
+      <div className="searchBox">
+        <SearchBox />
+      </div>
       <div>
         <Link href="/" legacyBehavior>
           <a className={router.pathname === "/" ? "active" : ""}>Home</a>
@@ -32,6 +36,13 @@ export default function NavBar() {
           padding: 20px 20px 10px;
           box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
             rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+          position: relative;
+        }
+        .searchBox {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
         img {
           max-width: 250px;
@@ -40,8 +51,8 @@ export default function NavBar() {
         }
         nav a {
           font-weight: 600;
-          font-size: 20px;
-          padding: 0 10px;
+          font-size: 18px;
+          padding: 0 5px;
         }
         .active {
           color: #af1f37;
