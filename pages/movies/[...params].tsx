@@ -47,11 +47,11 @@ export default function Detail({ movieDetail }: any) {
               </div>
               <div className="datalist">
                 <p className="dataTopic">평점 : </p>
-                {`${movieDetail?.vote_average}`}
+                {`${movieDetail?.vote_average.toFixed(1)}`}
               </div>
               <div className="datalist">
                 <p className="dataTopic">누적 관객수 : </p>
-                {`${movieDetail?.popularity}`}
+                {`${movieDetail?.popularity.toFixed(0)}`}
               </div>
             </div>
           </div>
