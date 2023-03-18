@@ -9,6 +9,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/api/search",
+        destination: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`,
+      },
+      {
         source: "/api/movies",
         destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko-KR`,
       },
