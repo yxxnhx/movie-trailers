@@ -2,16 +2,13 @@
 
 ## 🌱 프로젝트 소개
 
-Movie api를 활용하여 영화 정보를 제공하는 사이트를 제작하였습니다
+Movie api를 활용하여 영화 정보 및 검색 기능을 제공하는 사이트를 제작하였습니다
 
 <br />
 
-## 🚀 프로젝트 실행 방법
+## 📎 배포 사이트
 
-```
-npm install
-npm start
-```
+https://movie-trailers-tau.vercel.app/
 
 <br />
 
