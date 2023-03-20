@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import axios from "axios";
 import Seo from "../../components/Seo";
 import { MdManageSearch } from "react-icons/md";
@@ -15,12 +16,17 @@ interface Props {
 }
 
 export default function Home({ results, params }: Props) {
+  const router = useRouter();
+  const movieDatas = ({ id, title }: { id: number; title: string }) => {
+    router.push(`/movies/${title}/${id}`);
+  };
+
   return (
     <div>
       <Seo title={params} />
       <h1>Results of &lsquo;{params}&rsquo;</h1>
       {results.length ? (
-        <MovieBox results={results} />
+        <MovieBox results={results} movieDatas={movieDatas} />
       ) : (
         <div>
           <MdManageSearch />
