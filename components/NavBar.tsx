@@ -26,6 +26,11 @@ export default function NavBar() {
             Upcoming
           </a>
         </Link>
+        <Link href="/top-movie" legacyBehavior>
+          <a className={router.pathname === "/top-movie" ? "active" : ""}>
+            Top Movie
+          </a>
+        </Link>
       </div>
       <style jsx>{`
         nav {
