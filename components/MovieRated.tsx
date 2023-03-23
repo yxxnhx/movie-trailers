@@ -1,30 +1,13 @@
 import { useInfiniteQuery, InfiniteData } from "react-query";
 import { useRouter } from "next/router";
 
-import { fetchMovies } from "../api/index";
+// import { fetchMovies } from "../api/index";
 
 import useObserver from "../hooks/useObserver";
 import { useHandleScroll } from "../hooks/useHandleScroll";
 
 import MovieBox from "./MovieBox";
-
-interface Movie {
-  id?: number;
-  title?: string;
-  poster_path?: string;
-  original_title?: string;
-  vote_average?: number;
-  limit?: number;
-  pageParam?: number;
-  pages?: [];
-  pageParams?: [];
-}
-
-interface Page {
-  items: Movie[];
-  pageParam?: number;
-  pages?: [];
-}
+import { fetchMovies } from "../api";
 
 export default function MovieRated(): JSX.Element {
   const router = useRouter();
@@ -33,20 +16,16 @@ export default function MovieRated(): JSX.Element {
   };
 
   const { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery<InfiniteData<Page>, Error>(
-      "movie",
-      ({ pageParam = 1 }) => fetchMovies({ limit: 10, pageParam }),
-      {
-        getNextPageParam: (lastPage, allPages) => {
-          const nextPage = allPages.length + 1;
-          return lastPage.items?.length !== 0 ? nextPage : undefined;
-        },
+    useInfiniteQuery("movie", ({ pageParam = 1 }) => fetchMovies(pageParam), {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage = allPages.length + 1;
+        return lastPage.items?.length !== 0 ? nextPage : undefined;
       },
-    );
+    });
 
-  useHandleScroll(fetchNextPage, hasNextPage);
+  useHandleScroll({ fetchNextPage, hasNextPage, isFetchingNextPage });
 
-  const observerElement = useObserver(hasNextPage, fetchNextPage);
+  const observerElement = useObserver(fetchNextPage, hasNextPage);
 
   console.log(data);
 
@@ -55,8 +34,8 @@ export default function MovieRated(): JSX.Element {
       {isSuccess &&
         data.pages.map((page, i) => (
           <div key={i}>
-            {page.props.results?.length ? (
-              <MovieBox results={page.props.results} movieDatas={movieDatas} />
+            {page.props.items?.length ? (
+              <MovieBox results={page.props.items} movieDatas={movieDatas} />
             ) : (
               <p>No result found</p>
             )}

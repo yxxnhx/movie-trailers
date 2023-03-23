@@ -31,7 +31,7 @@ export default function MovieBox({ results, movieDatas }: MovieBoxProps) {
             />
           </div>
           <p className="movieTitle">{movie.title}</p>
-          <p className="movieRate">{movie.vote_average!.toFixed(1)}</p>
+          <p className="movieRate">{movie.vote_average?.toFixed(1)}</p>
         </div>
       ))}
       <style jsx>{`

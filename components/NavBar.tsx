@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import SearchBox from "./SearchBox";
@@ -7,15 +8,12 @@ export default function NavBar() {
   return (
     <nav>
       <Link href="/" legacyBehavior>
-        <img src="/movie-icon.png" alt="logo" />
+        <Image src="/movie-icon.png" alt="logo" width="250" height="100" />
       </Link>
       <div className="searchBox">
         <SearchBox />
       </div>
       <div>
-        <Link href="/" legacyBehavior>
-          <a className={router.pathname === "/" ? "active" : ""}>Home</a>
-        </Link>
         <Link href="/now-playing" legacyBehavior>
           <a className={router.pathname === "/now-playing" ? "active" : ""}>
             Now Playing

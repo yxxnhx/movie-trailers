@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 
-function useObserver(
-  hasNextPage: boolean,
-  fetchNextPage: () => void,
-): React.RefObject<HTMLElement> {
-  const observerElement = useRef<HTMLElement>(null);
+function useObserver(fetchNextPage: () => void, hasNextPage?: boolean) {
+  const observerElement = useRef<HTMLDivElement>(null);
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {

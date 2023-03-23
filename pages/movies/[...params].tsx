@@ -29,7 +29,7 @@ export default function Detail({ movieDetail }: any) {
             <div className="movieData">
               <div className="datalist">
                 <p className="dataTopic">제작 :</p>
-                {` ${movieDetail?.production_countries[0].iso_3166_1} / ${movieDetail?.production_countries[0].name}`}
+                {` ${movieDetail?.production_countries[0]?.iso_3166_1} / ${movieDetail?.production_countries[0]?.name}`}
               </div>
               <div className="datalist">
                 <p className="dataTopic">개봉일 : </p>
