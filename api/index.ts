@@ -37,7 +37,9 @@ interface MoviePage {
 export const fetchMovies = async (page: number): Promise<MoviePage> => {
   const limit = 10;
   const { results } = await axios
-    .get(`http://localhost:3000/api/top_rated?per_page=${limit}&page=${page}`)
+    .get(
+      `https://movie-trailers-tau.vercel.app/api/top_rated?per_page=${limit}&page=${page}`,
+    )
     .then((res) => res.data);
 
   const items = results.map(
