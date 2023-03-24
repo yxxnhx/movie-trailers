@@ -1,8 +1,6 @@
 import { useInfiniteQuery, InfiniteData } from "react-query";
 import { useRouter } from "next/router";
 
-// import { fetchMovies } from "../api/index";
-
 import useObserver from "../hooks/useObserver";
 import { useHandleScroll } from "../hooks/useHandleScroll";
 
@@ -26,8 +24,6 @@ export default function MovieRated(): JSX.Element {
   useHandleScroll({ fetchNextPage, hasNextPage, isFetchingNextPage });
 
   const observerElement = useObserver(fetchNextPage, hasNextPage);
-
-  console.log(data);
 
   return (
     <div>

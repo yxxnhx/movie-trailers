@@ -1,7 +1,37 @@
 import axios from "axios";
 import Seo from "../../components/Seo";
+interface Genre {
+  name: string;
+}
 
-export default function Detail({ movieDetail }: any) {
+interface ProductionCountry {
+  iso_3166_1: string;
+  name: string;
+}
+
+interface Language {
+  english_name: string;
+}
+
+interface MovieDetail {
+  original_title: string;
+  poster_path: string;
+  title: string;
+  genres: Genre[];
+  production_countries: ProductionCountry[];
+  release_date: string;
+  runtime: number;
+  spoken_languages: Language[];
+  vote_average: number;
+  popularity: number;
+  overview: string;
+}
+
+interface DetailProps {
+  movieDetail: MovieDetail;
+}
+
+export default function Detail({ movieDetail }: DetailProps) {
   return (
     <div className="container">
       <Seo title={movieDetail?.original_title} />
@@ -29,7 +59,11 @@ export default function Detail({ movieDetail }: any) {
             <div className="movieData">
               <div className="datalist">
                 <p className="dataTopic">제작 :</p>
-                {` ${movieDetail?.production_countries[0]?.iso_3166_1} / ${movieDetail?.production_countries[0]?.name}`}
+                {!movieDetail?.production_countries[0]?.iso_3166_1 &&
+                !movieDetail?.production_countries[0]?.name
+                  ? "비공개"
+                  : `${movieDetail?.production_countries[0].iso_3166_1} /
+                      ${movieDetail?.production_countries[0]?.name}`}
               </div>
               <div className="datalist">
                 <p className="dataTopic">개봉일 : </p>
@@ -57,10 +91,16 @@ export default function Detail({ movieDetail }: any) {
           </div>
         </div>
       </div>
-      <h2>Summary</h2>
-      <div className="overview">
-        <span>{movieDetail?.overview}</span>
-      </div>
+      {movieDetail?.overview ? (
+        <>
+          <h2>Summary</h2>
+          <div className="overview">
+            <span>{movieDetail?.overview}</span>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
       <style jsx>{`
         .container {
           width: 100%;
@@ -166,7 +206,11 @@ export default function Detail({ movieDetail }: any) {
   );
 }
 
-export async function getServerSideProps({ params: { params } }: any) {
+export async function getServerSideProps({
+  params: { params },
+}: {
+  params: { params: string[] };
+}) {
   const movieDetail = await (
     await axios.get(
       `https://movie-trailers-tau.vercel.app/api/movies/${params[1]}`,
