@@ -23,5 +23,6 @@ https://movie-trailers-tau.vercel.app/
 - React
 - Next.JS
 - TypeScript
+- React-query
 
 <br />
