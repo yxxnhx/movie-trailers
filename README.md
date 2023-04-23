@@ -20,7 +20,6 @@ https://movie-trailers-tau.vercel.app/
 
 ## 🏹 SKILLS & TOOLS
 
-- React
 - Next.JS
 - TypeScript
 - React-query
